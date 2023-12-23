@@ -12,7 +12,7 @@ config = {
 app = Flask(__name__)
 app.config.from_mapping(config)
 
-# Index Page along with a Cache to keep the leaderboards updated
+# Index Page
 @app.route('/')
 def index():
 
