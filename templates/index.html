@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="retro">
+
+<head>
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+<div class="navbar bg-base-100">
+  <div class="navbar-start">
+  </div>
+  <div class="navbar-center">
+    <a aria-current="page" aria-label="Homepage" class="flex-0 btn btn-ghost px-2"><div class="font-title text-primary inline-flex transition-all duration-200 text-3xl"><span class="lowercase">live</span>
+      <span class="text-base-content lowercase">control</span></div></a>
+  </div>
+  <div class="navbar-end">
+    <ul class="pr-8 menu menu-horizontal px-1">
+      <li>
+        <details>
+          <summary>
+            Theme
+          </summary>
+          <ul class="p-2 bg-base-200 rounded-box">
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Default" value="default"/></li>
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk" value="cyberpunk"/></li>
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine" value="valentine"/></li>
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Acid" value="acid"/></li>
+            <li><input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" value="aqua"/></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="mx-auto w-full max-w-2xl py-10">
+  <!-- <div class="grid grid-flow-col text-center w-full pb-4">
+    <div class="flex flex-col p-2 bg-base-300 rounded-box text-neutral-content">
+      <span class="text-black font-mono text-5xl">
+        <span>00:00:00</span>
+      </span>
+    </div> 
+  </div> -->
+
+  <div class="grid grid-cols-4 gap-4 w-full pb-5">
+    <div>
+      <button class="btn btn-neutral btn-block">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M459.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4L288 214.3V256v41.7L459.5 440.6zM256 352V256 128 96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160C4.2 237.5 0 246.5 0 256s4.2 18.5 11.5 24.6l192 160c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V352z"/></svg>
+      </button>
+    </div>
+    <div>
+      <button class="btn btn-primary btn-block">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>
+      </button>
+    </div>
+    <div>
+      <button class="btn btn-secondary btn-block">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>
+      </button>
+    </div>
+    <div>
+      <button class="btn btn-accent btn-block">
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="overflow-x-auto">
+      <table class="table">
+
+        <thead>
+          <tr>
+            <th>Armed</th>
+            <th>Track</th>
+            <th>Volume</th>
+            <th>Muted</th>
+            <th>Solo</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for document in tracks %}
+          <tr>
+            <th>
+              <label>
+                {% if document['arm'] %}
+                <input type="checkbox" class="checkbox" checked/>
+                {% else %}
+                <input type="checkbox" class="checkbox"/>
+                {% endif %}
+              </label>
+            </th>
+            <td>
+              <div class="flex items-center gap-3">
+                <div>
+                  <div class="font-bold">{{ document['name'] }}</div>
+                  <div class="text-sm opacity-50">Track {{ loop.index }}</div>
+                </div>
+              </div>
+            </td>
+            <th>
+              <progress class="progress progress-accent w-40" value="{{ document['volume'] }}" max="1"></progress>
+            </th>
+            <th>
+              <label>
+                {% if document['mute'] %}
+                <input type="checkbox" class="checkbox" checked/>
+                {% else %}
+                <input type="checkbox" class="checkbox"/>
+                {% endif %}
+              </label>
+            </th>
+            <th>
+              <label>
+                {% if document['solo'] %}
+                <input type="checkbox" class="checkbox" checked/>
+                {% else %}
+                <input type="checkbox" class="checkbox"/>
+                {% endif %}
+              </label>
+            </th>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+<footer class="footer footer-center p-4 text-base-content">
+  <aside>
+    <p>Made with ❤️ by wtfchewy</p>
+  </aside>
+</footer>
+
+</html>
